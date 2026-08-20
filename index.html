@@ -542,6 +542,8 @@
                 <li><a href="#tournaments">Tournaments</a></li>
                 <li><a href="#vip">VIP Perks</a></li>
                 <li><a href="#events">Events</a></li>
+                <li><a onclick="openModal('registrationModal')">Register Form</a></li>
+                <li><a onclick="openModal('staffModal')">Staff App</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="mobile-toggle" onclick="toggleNav()">
@@ -935,7 +937,7 @@
             }
 
             try {
-                const response = await-fetch(DISCORD_WEBHOOK_URL, {
+                const response = await fetch(DISCORD_WEBHOOK_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
