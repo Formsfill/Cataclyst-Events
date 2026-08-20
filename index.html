@@ -884,14 +884,24 @@
                 const gameEvent = document.getElementById('regEvent').value;
 
                 payload = {
+                    content: "🔔 **New Registration Alert!** A user has registered for an upcoming event.",
                     embeds: [{
-                        title: "📝 New Event Registration (Cataclyst Events)",
-                        color: 8913142,
+                        title: "📝 Event Registration Submission",
+                        description: "Successfully processed new player registration details for Cataclyst Events.",
+                        color: 9109759, // Vibrant Purple/Violet highlight color
+                        author: {
+                            name: "Cataclyst System Notifier",
+                            icon_url: "https://cdn-icons-png.flaticon.com/512/2921/2921222.png"
+                        },
                         fields: [
-                            { name: "In-Game Name", value: name, inline: true },
-                            { name: "Discord Tag", value: discord, inline: true },
-                            { name: "Selected Event", value: gameEvent, inline: false }
+                            { name: "👤 In-Game Username", value: `\`${name}\``, inline: true },
+                            { name: "💬 Discord Tag", value: `\`${discord}\``, inline: true },
+                            { name: "📅 Target Event", value: `**${gameEvent}**`, inline: false }
                         ],
+                        footer: {
+                            text: "Cataclyst Events • Registration Gateway",
+                            icon_url: "https://cdn-icons-png.flaticon.com/512/2921/2921222.png"
+                        },
                         timestamp: new Date().toISOString()
                     }]
                 };
@@ -902,22 +912,32 @@
                 const exp = document.getElementById('staffExp').value;
 
                 payload = {
+                    content: "🚨 **New Staff Application Alert!** A candidate has submitted a new staff application form.",
                     embeds: [{
-                        title: "🛡️ New Staff Application (Cataclyst Events)",
-                        color: 38663,
+                        title: "🛡️ Staff Application Submission",
+                        description: "A new candidate is applying to join the Cataclyst administration team.",
+                        color: 39423, // Bright Blue/Cyan highlight color
+                        author: {
+                            name: "Cataclyst HR Gateway",
+                            icon_url: "https://cdn-icons-png.flaticon.com/512/1006/1006771.png"
+                        },
                         fields: [
-                            { name: "Applicant Name", value: name, inline: true },
-                            { name: "Discord Tag", value: discord, inline: true },
-                            { name: "Desired Role", value: role, inline: false },
-                            { name: "Experience / Motivation", value: exp, inline: false }
+                            { name: "👤 Applicant Name", value: `\`${name}\``, inline: true },
+                            { name: "💬 Discord Tag", value: `\`${discord}\``, inline: true },
+                            { name: "⭐ Desired Role", value: `**${role}**`, inline: false },
+                            { name: "📝 Experience / Motivation", value: `> ${exp.replace(/\n/g, '\n> ')}`, inline: false }
                         ],
+                        footer: {
+                            text: "Cataclyst Events • Recruitment Division",
+                            icon_url: "https://cdn-icons-png.flaticon.com/512/1006/1006771.png"
+                        },
                         timestamp: new Date().toISOString()
                     }]
                 };
             }
 
             try {
-                const response = await fetch(DISCORD_WEBHOOK_URL, {
+                const response = await-fetch(DISCORD_WEBHOOK_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
